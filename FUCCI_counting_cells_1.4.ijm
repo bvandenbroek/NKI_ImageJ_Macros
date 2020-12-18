@@ -385,9 +385,11 @@ setBatchMode("show");
 		Stack.setChannel(ch_red);
 		run("Red");
 		setMinAndMax(background_red,brightness_factor_red*signal_red);
-		Stack.setChannel(ch_nuc);
-		run("Grays");
-		setMinAndMax(background_nuc,brightness_factor_nuc*signal_nuc);
+		if (use_ch_nuc==true) {
+			Stack.setChannel(ch_nuc);
+			run("Grays");
+			setMinAndMax(background_nuc,brightness_factor_nuc*signal_nuc);
+		}
 		run("RGB Color", "frames");
 		rename(cropped+"_RGB");
 		setBatchMode("show");
