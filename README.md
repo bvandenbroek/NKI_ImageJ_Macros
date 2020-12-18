@@ -1,2 +1,2 @@
 # NKI_ImageJ_Macros
-ImageJ Macros at the Netherlands Cancer Institute
+Some ImageJ Macros at the Netherlands Cancer Institute
