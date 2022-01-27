@@ -24,6 +24,8 @@
  * N.B. This script heavily relies on (mostly) CLIJ2 (https://clij.github.io/) and StarDist (https://imagej.net/StarDist).
  * If you use this script in a publication, please cite them appropriately.
  * 
+ * Version 1.1:
+ * - Replaced deprecated CLIJx function ExtendLabelsWithMaximumradius 
  */
 
 
@@ -236,10 +238,10 @@ function getLabelMaps_GPU(image, unit) {
 	Ext.CLIJ2_getMaximumOfAllPixels(labelmap_nuclei_filtered, nrNuclei);	//get the number of nuclei after filtering
 	
 	//Create gap
-	Ext.CLIJx_extendLabelsWithMaximumRadius(labelmap_nuclei_filtered, extendedlabelmap_gap, gapSize);
+	Ext.CLIJ2_dilateLabels(labelmap_nuclei_filtered, extendedlabelmap_gap, gapSize);
 
 	//Expand labels further and subtract to create the rings
-	Ext.CLIJx_extendLabelsWithMaximumRadius(extendedlabelmap_gap, extendedlabelmap_gapAndrings, bandSize);
+	Ext.CLIJ2_dilateLabels(extendedlabelmap_gap, extendedlabelmap_gapAndrings, bandSize);
 	Ext.CLIJ2_subtractImages(extendedlabelmap_gapAndrings, extendedlabelmap_gap, labelmap_rings);
 	Ext.CLIJ2_release(extendedlabelmap_gap);
 	Ext.CLIJ2_release(extendedlabelmap_gapAndrings);
